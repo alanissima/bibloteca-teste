@@ -4,57 +4,45 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JButton;
+
+import javax.swing.ImageIcon;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
 public class Principal extends JFrame implements ActionListener{
 	Container c;
 	JMenuBar barra;
-	JMenu menuLivro;
-	JMenuItem cadastro, busca, expo;
+	JMenu menuSala;
+	JMenuItem cadastro, busca;
 	JDesktopPane painel;
-//	JButton btBusca, btExpo;
 	Color corFundo;
-//	JPanel pCabecalho, pConteudo, pRodape; 
-	
+	ImageIcon imagem;
+	JLabel label;
 	
 	void instanciarcomponentes() {
 		barra = new JMenuBar();
-		menuLivro = new JMenu("Biblioteca");
-		cadastro = new JMenuItem("Cadastrar Livro");
-	//	busca = new JMenuItem("Buscar Livro");
-	//	expo = new JMenuItem("Exposição de Livros");
+		menuSala = new JMenu("Sala de Avaliações");
+		cadastro = new JMenuItem("Avaliar Alunos");
 		painel = new JDesktopPane();
 		corFundo = new Color(37, 57, 67);
-	//	btBusca = new JButton("Buscar");
-	//	btExpo = new JButton("Ver Livros");
-	///	pCabecalho =  new JPanel();
-	 //   pConteudo = new JPanel();
-	 //   pRodape =  new JPanel();
+		imagem = new ImageIcon(getClass().getResource("Bilboteca Federal do Paraná.png"));
+		label = new JLabel(imagem);
 	}
 	
 	void atribuirvalores() {
-		setSize(1024,780);
+		setSize(1380,729);
 		setJMenuBar(barra);
-		painel.setBackground(corFundo);
 		cadastro.addActionListener(this);
-	//	btBusca.addActionListener(this);
-	//	btExpo.addActionListener(this);
 	}
 	
 	void montartela() {
-		menuLivro.add(cadastro);
-		//menuLivro.add(busca);
-	//	menuLivro.add(expo);
-		barra.add(menuLivro);
-		//pConteudo.add(btBusca);
-	//	pConteudo.add(btExpo);
+		menuSala.add(cadastro);
+		barra.add(menuSala);
 		setVisible(true);
 		add(painel);
 	}
@@ -62,12 +50,14 @@ public class Principal extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == cadastro) {
-		Biblioteca b = new Biblioteca();
+		Sala b = new Sala();
 		painel.add(b);
-	//	painel.add(btBusca);
-//		painel.add(btExpo);
 		b.setVisible(true);
 		}
+	}
+	
+	public Principal() {
+		add(label);
 	}
 	
 	public static void main(String[] args) {
